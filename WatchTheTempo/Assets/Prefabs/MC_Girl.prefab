@@ -150,6 +150,7 @@ MonoBehaviour:
   yspeed: 4
   Note: {fileID: 8517491584363786677, guid: e97195c415cdbb647ab82a08e86b84ea, type: 3}
   Note2: {fileID: 4743554692680676628, guid: 030fefebfcc839a4b9bce18648af6b9c, type: 3}
+  canvas: {fileID: 1605455388092700425, guid: 79a51d54734bfb74496c79d411a67954, type: 3}
 --- !u!114 &6455341334312445501
 MonoBehaviour:
   m_ObjectHideFlags: 0

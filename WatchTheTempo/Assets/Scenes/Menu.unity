@@ -1312,9 +1312,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1334c19ec2253114bbc1dfa607540f46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LoadingScreen: {fileID: 0}
-  slider: {fileID: 0}
-  ghost: {fileID: 0}
+  LoadingScreen: {fileID: 213535766}
+  slider: {fileID: 109559152}
 --- !u!4 &1910142261
 Transform:
   m_ObjectHideFlags: 0

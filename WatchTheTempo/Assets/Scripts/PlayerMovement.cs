@@ -21,7 +21,8 @@ public class PlayerMovement : MonoBehaviour
     public GameObject Note2;
     private float lastShoot;
 
-    //
+    //UI
+    public GameObject canvas;
 
     //Components
     private Rigidbody2D rb;
@@ -61,6 +62,8 @@ public class PlayerMovement : MonoBehaviour
         {
             Shoot();
             lastShoot = Time.time;
+            HUD.instance.UpdateEar(-5);
+            HUD.instance.UpdateWrist(-10);
         }
     }
 
