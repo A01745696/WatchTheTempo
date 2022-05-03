@@ -2,18 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAttack : MonoBehaviour
+public class EnemyAttack : NoteScript
 {
-    private GameObject Player;
-    private void Awake()
+    protected override void OnTriggerEnter2D(Collider2D collision)
     {
-        Player = GameObject.FindGameObjectWithTag("Player");
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if( collision.gameObject.tag == Player.tag)
+        if (collision.gameObject.CompareTag("Player"))
         {
-            print("sopas");
+            Destroy(gameObject);
+            HUD.instance.UpdateNormal(-Random.Range(10,20));
+            PlayerHealth.instance.score -= 50;
+            PlayerHealth.instance.multiplier = 0.1f;
         }
     }
 }

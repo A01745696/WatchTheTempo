@@ -14,15 +14,12 @@ public class PlayerMovement : MonoBehaviour
     private float y;
     private float z;
     Vector2 cntrl;
-    private static Vector2 LimitsY = new Vector2(1.8f, -2.8f);
+    private static Vector2 LimitsY = new Vector2(0.58f, -3.41f);
 
     //Bullet
     public GameObject Note;
     public GameObject Note2;
     private float lastShoot;
-
-    //UI
-    public GameObject canvas;
 
     //Components
     private Rigidbody2D rb;
@@ -57,13 +54,14 @@ public class PlayerMovement : MonoBehaviour
         transform.position = new Vector3(transform.position.x,
             Mathf.Clamp(transform.position.y, LimitsY.y, LimitsY.x),
             transform.position.z);
+
         //Shoot Notes
         if (Input.GetKeyDown(KeyCode.Z) && Time.time > lastShoot + 0.25f)
         {
             Shoot();
             lastShoot = Time.time;
-            HUD.instance.UpdateEar(-5);
-            HUD.instance.UpdateWrist(-10);
+            HUD.instance.UpdateEar(-2);
+            HUD.instance.UpdateWrist(-3);
         }
     }
 

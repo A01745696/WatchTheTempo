@@ -5,7 +5,8 @@ using UnityEngine;
 public class NoteScript : MonoBehaviour
 {
     //Bullet/Note speed
-    private float Speed = 6;
+    private float Speed = 8;
+    private float points = 200; 
 
     //Components
     private Rigidbody2D rb;
@@ -13,7 +14,7 @@ public class NoteScript : MonoBehaviour
 
     private void Start()
     {
-        InvokeRepeating("DestroyNote", 3, 1);
+        InvokeRepeating("DestroyNote", 2.5f, 1);
     }
 
     private void Awake()
@@ -32,14 +33,27 @@ public class NoteScript : MonoBehaviour
     public void DestroyNote()
     {
         Destroy(gameObject);
+        PlayerHealth.instance.multiplier = 0.1f;
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
+        //Detecta Enemigo
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-            enemy.Hit();
+            try
+            {
+                Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+                enemy.Hit();
+            } catch
+            {
+                WolfEnemy enemy = collision.gameObject.GetComponent<WolfEnemy>();
+                enemy.Hit();
+            }
+            
             DestroyNote();
+            PlayerHealth.instance.score += (int)(points + points * PlayerHealth.instance.multiplier);
+            PlayerHealth.instance.multiplier += 0.1f;
         }
     }
+
 }
