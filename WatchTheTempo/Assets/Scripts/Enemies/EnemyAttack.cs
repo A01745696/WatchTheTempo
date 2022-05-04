@@ -10,8 +10,8 @@ public class EnemyAttack : NoteScript
         {
             Destroy(gameObject);
             HUD.instance.UpdateNormal(-Random.Range(10,20));
-            PlayerHealth.instance.score -= 50;
-            PlayerHealth.instance.multiplier = 0.1f;
+            PlayerHealth.score -= 50;
+            PlayerHealth.multiplier = 0.1f;
         }
     }
 }

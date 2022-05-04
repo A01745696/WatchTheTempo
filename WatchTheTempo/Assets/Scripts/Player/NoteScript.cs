@@ -33,7 +33,7 @@ public class NoteScript : MonoBehaviour
     public void DestroyNote()
     {
         Destroy(gameObject);
-        PlayerHealth.instance.multiplier = 0.1f;
+        PlayerHealth.multiplier = 0.1f;
     }
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
@@ -51,8 +51,8 @@ public class NoteScript : MonoBehaviour
             }
             
             DestroyNote();
-            PlayerHealth.instance.score += (int)(points + points * PlayerHealth.instance.multiplier);
-            PlayerHealth.instance.multiplier += 0.1f;
+            PlayerHealth.score += (int)(points + points * PlayerHealth.multiplier);
+            PlayerHealth.multiplier += 0.1f;
         }
     }
 

@@ -14,6 +14,8 @@ public class HUD : MonoBehaviour
     //Loose Win Screen
     public GameObject gameover;
     public GameObject victoryscreen;
+    public GameObject weapons;
+
     public Text LooserScore;
     public Text victorySore;
 
@@ -29,9 +31,9 @@ public class HUD : MonoBehaviour
 
     private void Start()
     {
-        ear_health.fillAmount = (float)PlayerHealth.instance.health_ear/maxValue;
-        wrist_health.fillAmount = (float)PlayerHealth.instance.health_wrist / maxValue;
-        normal_health.fillAmount = (float)PlayerHealth.instance.health_normal / maxValue;
+        ear_health.fillAmount = (float)PlayerHealth.health_ear/maxValue;
+        wrist_health.fillAmount = (float)PlayerHealth.health_wrist / maxValue;
+        normal_health.fillAmount = (float)PlayerHealth.health_normal / maxValue;
     }
 
     private void Update()
@@ -44,20 +46,20 @@ public class HUD : MonoBehaviour
 
     public void UpdateEar(int i)
     {
-        PlayerHealth.instance.health_ear += i;
-        ear_health.fillAmount = (float)PlayerHealth.instance.health_ear / maxValue;
+        PlayerHealth.health_ear += i;
+        ear_health.fillAmount = (float)PlayerHealth.health_ear / maxValue;
     }
     public void UpdateWrist(int i)
     {
-        PlayerHealth.instance.health_wrist += i;
-        wrist_health.fillAmount = (float)PlayerHealth.instance.health_wrist / maxValue;
+        PlayerHealth.health_wrist += i;
+        wrist_health.fillAmount = (float)PlayerHealth.health_wrist / maxValue;
     }
     public void UpdateNormal(int i)
     {
-        PlayerHealth.instance.health_normal += i;
-        normal_health.fillAmount = (float)PlayerHealth.instance.health_normal / maxValue;
+        PlayerHealth.health_normal += i;
+        normal_health.fillAmount = (float)PlayerHealth.health_normal / maxValue;
 
-        if (PlayerHealth.instance.health_normal < 0)
+        if (PlayerHealth.health_normal < 0)
         {
             GameOver();
         }
@@ -66,13 +68,15 @@ public class HUD : MonoBehaviour
     private void GameOver()
     {
         gameover.SetActive(true);
-        LooserScore.text = PlayerHealth.instance.score.ToString();
+        weapons.SetActive(false);
+        LooserScore.text = PlayerHealth.score.ToString();
         Time.timeScale = 0;
     }
     public void VictoryScreen()
     {
         victoryscreen.SetActive(true);
-        victorySore.text = PlayerHealth.instance.score.ToString();
+        weapons.SetActive(false);
+        victorySore.text = PlayerHealth.score.ToString();
     }
     public void Menu()
     {
@@ -83,10 +87,7 @@ public class HUD : MonoBehaviour
     {
         SceneManager.LoadScene("Tienda1");
     }
-    public void Tienda2()
-    {
-        SceneManager.LoadScene("Tienda2");
-    }
+
     public void Pause()
     {
         paused = !paused;

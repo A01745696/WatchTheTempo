@@ -137,10 +137,11 @@ public class WolfEnemy : MonoBehaviour
         {
             if (ob.collider.gameObject != gameObject)
             {
-                HUD.instance.UpdateNormal(-Random.Range(10,20));
-                PlayerHealth.instance.score -= 50;
-                PlayerHealth.instance.multiplier = 0.1f;
+                HUD.instance.UpdateNormal(-Random.Range(10, 20));
+                PlayerHealth.score -= 50;
+                PlayerHealth.multiplier = 0.1f;
             }
+
         }
     }
     public void Hit()

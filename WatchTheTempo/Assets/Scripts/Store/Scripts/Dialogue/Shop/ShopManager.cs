@@ -8,7 +8,7 @@ public class ShopManager : MonoBehaviour
 {
 
     public int[,] shopItems = new int[4,4];
-    public float points;
+    public float points = PlayerHealth.score;
     public Text PointsTXT;
 
 

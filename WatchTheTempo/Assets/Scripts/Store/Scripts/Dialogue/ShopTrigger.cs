@@ -15,4 +15,8 @@ public class ShopTrigger : MonoBehaviour
         //cargar escena fuera de tienda
         SceneManager.LoadScene("Tienda1");
     }
+    public void nextLevel()
+    {
+        SceneManager.LoadScene("2nd Level");
+    }
 }
