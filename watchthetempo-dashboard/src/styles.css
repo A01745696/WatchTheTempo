@@ -1,0 +1,26 @@
+html {
+  color: white;
+  text-align: center;
+  animation-name: color-shift;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes color-shift{
+  0% {background-color: black;}
+  50% {background-color: #646464;}
+  100% {background-color: black;}
+}
+
+h1 {
+  color: white;
+  text-align: center;
+}
+
+.inner-div {
+  padding: 30px;
+  margin: auto;
+  align-content: center;
+  width: 60%;
+  height: 60%;
+}
