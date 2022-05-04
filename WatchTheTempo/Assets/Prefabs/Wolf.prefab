@@ -367,8 +367,8 @@ MonoBehaviour:
   state: 0
   searchRange: 9
   stoppingDistance: 2
-  leftlmit: 0
-  rightlmit: 0
+  leftlmit: -12
+  rightlmit: 12
   xspeed: 4
   yspeed: 2
   claw: {fileID: 898869111119764148}

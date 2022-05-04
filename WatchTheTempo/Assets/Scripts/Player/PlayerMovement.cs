@@ -15,6 +15,8 @@ public class PlayerMovement : MonoBehaviour
     private float z;
     Vector2 cntrl;
     private static Vector2 LimitsY = new Vector2(0.58f, -3.41f);
+    public bool boss = false;
+    private static Vector2 LimitsYboss = new Vector2(-0.1f, -6.5f);
 
     //Bullet
     public GameObject Note;
@@ -51,9 +53,18 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector2(cntrl.x * xspeed, cntrl.y * yspeed);
 
         //Limits in movement
-        transform.position = new Vector3(transform.position.x,
-            Mathf.Clamp(transform.position.y, LimitsY.y, LimitsY.x),
-            transform.position.z);
+        if (!boss)
+        {
+            transform.position = new Vector3(transform.position.x,
+                Mathf.Clamp(transform.position.y, LimitsY.y, LimitsY.x),
+                transform.position.z);
+        }
+        else
+        {
+            transform.position = new Vector3(transform.position.x,
+                Mathf.Clamp(transform.position.y, LimitsYboss.y, LimitsYboss.x),
+                transform.position.z);
+        }
 
         //Shoot Notes
         if (Input.GetKeyDown(KeyCode.Z) && Time.time > lastShoot + 0.25f)

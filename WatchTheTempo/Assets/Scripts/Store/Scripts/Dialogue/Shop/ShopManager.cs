@@ -8,13 +8,12 @@ public class ShopManager : MonoBehaviour
 {
 
     public int[,] shopItems = new int[4,4];
-    public float points = PlayerHealth.score;
     public Text PointsTXT;
 
 
     void Start()
     {
-        PointsTXT.text = "Points Available: " + points.ToString();
+        PointsTXT.text = "Points Available: " + PlayerHealth.score.ToString();
 
         shopItems[1, 1] = 1;
         shopItems[1, 2] = 2;
@@ -35,13 +34,21 @@ public class ShopManager : MonoBehaviour
     public void Buy()
     {
         GameObject ButtonRef = GameObject.FindGameObjectWithTag("Event").GetComponent<EventSystem>().currentSelectedGameObject;
+        float points = PlayerHealth.score;
 
-        if(points >= shopItems[2,ButtonRef.GetComponent<ButtonInfo>().ItemID])
+        if (points >= shopItems[2,ButtonRef.GetComponent<ButtonInfo>().ItemID])
         {
             points -= shopItems[2, ButtonRef.GetComponent<ButtonInfo>().ItemID];
             shopItems[3, ButtonRef.GetComponent<ButtonInfo>().ItemID]++;
             PointsTXT.text = "Points: " + points.ToString();
             ButtonRef.GetComponent<ButtonInfo>().QuantityTxt.text = shopItems[3, ButtonRef.GetComponent<ButtonInfo>().ItemID].ToString();
+            if (ButtonRef.GetComponent<ButtonInfo>().ItemID == 1)
+                PlayerHealth.health_normal = 100;
+            else if (ButtonRef.GetComponent<ButtonInfo>().ItemID == 2)
+                PlayerHealth.health_ear = 100;
+            else
+                PlayerHealth.health_wrist = 100;
+
         }
     }
 }

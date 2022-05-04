@@ -42,6 +42,10 @@ public class HUD : MonoBehaviour
         {
             Pause();
         }
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            GameOver();
+        }
     }
 
     public void UpdateEar(int i)
@@ -65,11 +69,15 @@ public class HUD : MonoBehaviour
         }
     }
 
-    private void GameOver()
+    public void GameOver()
     {
-        gameover.SetActive(true);
         weapons.SetActive(false);
+        gameover.SetActive(true);
         LooserScore.text = PlayerHealth.score.ToString();
+        PlayerHealth.score = 0;
+        PlayerHealth.health_ear = 100;
+        PlayerHealth.health_wrist = 100;
+        PlayerHealth.health_normal = 100;
         Time.timeScale = 0;
     }
     public void VictoryScreen()
@@ -86,6 +94,10 @@ public class HUD : MonoBehaviour
     public void Tienda()
     {
         SceneManager.LoadScene("Tienda1");
+    }
+    public void Boss()
+    {
+        SceneManager.LoadScene("Boss Level");
     }
 
     public void Pause()

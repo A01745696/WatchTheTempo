@@ -17,7 +17,6 @@ public class Level1 : MonoBehaviour
     void Update()
     {
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        print(enemies.Length);
         if (enemies.Length == 0 && player.transform.position.x > 125)
         {
             HUD.instance.VictoryScreen();

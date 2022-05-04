@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     private static Vector2 LimitsY = new Vector2(0.58f, -3.41f);
     [SerializeField] public float leftlmit;
     [SerializeField] public float rightlmit;
+    public bool boss = false;
 
     //Movement
     private float x;
@@ -53,10 +54,19 @@ public class Enemy : MonoBehaviour
         {
             return;
         }
-        //Limits X movement
-        target = new Vector2(Mathf.Clamp(transform.position.x + Random.Range(-runRange, runRange),
+        //Limits movement
+        if (!boss)
+        {
+            target = new Vector2(Mathf.Clamp(transform.position.x + Random.Range(-runRange, runRange),
             leftlmit, rightlmit),
             Random.Range(LimitsY.y, LimitsY.x));
+        }
+        else
+        {
+            target = new Vector2(Mathf.Clamp(transform.position.x + Random.Range(-runRange, runRange),
+            leftlmit, rightlmit),
+            Random.Range(0, -6));
+        }
 
     }
     private void Update()
