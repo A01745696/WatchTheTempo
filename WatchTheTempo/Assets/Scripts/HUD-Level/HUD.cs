@@ -42,10 +42,7 @@ public class HUD : MonoBehaviour
         {
             Pause();
         }
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            GameOver();
-        }
+
     }
 
     public void UpdateEar(int i)
