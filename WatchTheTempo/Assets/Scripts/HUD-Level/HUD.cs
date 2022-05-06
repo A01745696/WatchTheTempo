@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Networking;
 
 public class HUD : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class HUD : MonoBehaviour
     public GameObject gameover;
     public GameObject victoryscreen;
     public GameObject weapons;
+    public int idInstrumento;
 
     public Text LooserScore;
     public Text victorySore;
@@ -71,6 +73,7 @@ public class HUD : MonoBehaviour
         weapons.SetActive(false);
         gameover.SetActive(true);
         LooserScore.text = PlayerHealth.score.ToString();
+        StartCoroutine(SubirTextoPlano());
         PlayerHealth.score = 0;
         PlayerHealth.health_ear = 100;
         PlayerHealth.health_wrist = 100;
@@ -82,6 +85,7 @@ public class HUD : MonoBehaviour
         victoryscreen.SetActive(true);
         weapons.SetActive(false);
         victorySore.text = PlayerHealth.score.ToString();
+        StartCoroutine(SubirTextoPlano());
     }
     public void Menu()
     {
@@ -104,4 +108,29 @@ public class HUD : MonoBehaviour
 
         Time.timeScale = paused ? 0 : 1;
     }
+
+    private IEnumerator SubirTextoPlano()
+    {
+        WWWForm forma = new WWWForm();
+        forma.AddField("ID_Jugador", "sopas");
+        forma.AddField("Puntuacion", 9999);
+        forma.AddField("ID_Personaje", 1);
+        forma.AddField("ID_Instrumento", idInstrumento);
+        forma.AddField("ID_Nivel", SceneManager.GetActiveScene().buildIndex);
+        forma.AddField("Tiempo", (int)Time.fixedTime);
+
+        UnityWebRequest request = UnityWebRequest.Post("http://snowker.xyz/phpmyadmin/registraDatos.php", forma);
+        yield return request.SendWebRequest();
+
+        if (request.result == UnityWebRequest.Result.Success)
+        {
+            string textoPlano = request.downloadHandler.text;
+            print(textoPlano);
+        }
+        else
+        {
+            print("Error al descargar: " + request.responseCode.ToString());
+        }
+    }
+
 }
