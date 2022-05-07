@@ -51,6 +51,7 @@ public class Boss : MonoBehaviour
         }
         if (waves == 0)
         {
+            enabled = false;
             HUD.instance.VictoryScreen();
         }
     }

@@ -9,6 +9,7 @@ public class PlayerHealth : MonoBehaviour
     public static int health_wrist = 100;
     public static int score = 0;
     public static float multiplier = 0.1f;
+    public static string usuario = "";
 
 }
  

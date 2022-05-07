@@ -20,7 +20,7 @@ public class Level1 : MonoBehaviour
         if (enemies.Length == 0 && player.transform.position.x > 125)
         {
             HUD.instance.VictoryScreen();
-
+            enabled = false;
         }
     }
 }

@@ -44,7 +44,6 @@ public class HUD : MonoBehaviour
         {
             Pause();
         }
-
     }
 
     public void UpdateEar(int i)
@@ -111,21 +110,22 @@ public class HUD : MonoBehaviour
 
     private IEnumerator SubirTextoPlano()
     {
+        
         WWWForm forma = new WWWForm();
-        forma.AddField("ID_Jugador", "sopas");
-        forma.AddField("Puntuacion", 9999);
+        forma.AddField("ID_Jugador", PlayerHealth.usuario);
+        forma.AddField("Puntuacion", PlayerHealth.score);
         forma.AddField("ID_Personaje", 1);
         forma.AddField("ID_Instrumento", idInstrumento);
         forma.AddField("ID_Nivel", SceneManager.GetActiveScene().buildIndex);
         forma.AddField("Tiempo", (int)Time.fixedTime);
 
-        UnityWebRequest request = UnityWebRequest.Post("http://snowker.xyz/phpmyadmin/registraDatos.php", forma);
+        UnityWebRequest request = UnityWebRequest.Post("https://snowker.xyz/phpmyadmin/registraDatos.php", forma);
         yield return request.SendWebRequest();
 
         if (request.result == UnityWebRequest.Result.Success)
         {
             string textoPlano = request.downloadHandler.text;
-            print(textoPlano);
+            print("Exito papu" + textoPlano);
         }
         else
         {

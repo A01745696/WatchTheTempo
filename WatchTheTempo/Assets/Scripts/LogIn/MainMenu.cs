@@ -27,6 +27,7 @@ public class MainMenu : MonoBehaviour
     private IEnumerator DescargaDatosRed()
     {
         string usuario = textoUsuario.text;
+        PlayerHealth.usuario = usuario;
         string password = textoPassword.text;
 
         WWWForm forma = new WWWForm();
